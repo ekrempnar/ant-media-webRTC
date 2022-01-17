@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.*;
 import pages.PlayerPage;
 import pages.PublisherPage;
+import pages.ServerPage;
 
 import java.io.IOException;
 
@@ -9,6 +10,7 @@ public class TestScreenShare extends BaseTest {
 
     PublisherPage publisherPage;
     PlayerPage playerPage;
+    ServerPage serverPage;
 
     @Test
     @Order(1)
@@ -53,5 +55,17 @@ public class TestScreenShare extends BaseTest {
         playerPage = new PlayerPage(driver);
         playerPage.getScreenshot();
         playerPage.checkScreenSharedSuccessfully();
+    }
+
+    @Test
+    @Order(7)
+    public void check_screen_sharing_from_server() throws InterruptedException {
+        serverPage = new ServerPage(driver);
+        serverPage.openServerPage();
+        serverPage.login();
+        serverPage.checkIsServerPageOpened();
+        Assertions.assertTrue(serverPage.checkIsServerPageOpened(), "Not on Server Page");
+        serverPage.switchWebRTCPanel();
+        serverPage.checkIsStreamStarted();
     }
 }

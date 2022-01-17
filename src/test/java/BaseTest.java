@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -24,10 +23,11 @@ public class BaseTest {
         driver.get("https://ovh36.antmedia.io:5443/WebRTCAppEE/index.html");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
     }
 
     @AfterAll
-    public void tearDown() throws IOException {
+    public void tearDown() {
         driver.quit();
     }
 }
